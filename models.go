@@ -50,7 +50,6 @@ const (
 type Todo struct {
 	Note
 	Priority         Priority
-	EstimatedMinutes int
 }
 
 // Task represents a unit of work processed.
@@ -107,10 +106,6 @@ func (t Todo) Validate() error {
 		// Valid priority.
 	default:
 		return errors.New("priority must be low, medium, or high")
-	}
-
-	if t.EstimatedMinutes <= 0 {
-		return errors.New("estimated minutes must be greater than zero")
 	}
 
 	return nil

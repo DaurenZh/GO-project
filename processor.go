@@ -24,7 +24,6 @@ type NoteResult struct {
 	Title          string
 	WordCount      int
 	CharacterCount int
-	ReadingMinutes int
 }
 
 // TodoResult stores the result of to-do analysis.
@@ -32,7 +31,6 @@ type TodoResult struct {
 	Title            string
 	Priority         Priority
 	PriorityCategory string
-	EstimatedMinutes int
 }
 
 // Process calculates the completion statistics for a habit.
@@ -61,17 +59,10 @@ func (n Note) Process() (any, error) {
 	words := strings.Fields(n.Body)
 	characters := utf8.RuneCountInString(n.Body)
 
-	readingMinutes := (len(words) + 199) / 200
-
-	if readingMinutes == 0 {
-		readingMinutes = 1
-	}
-
 	return NoteResult{
 		Title:          n.Title,
 		WordCount:      len(words),
 		CharacterCount: characters,
-		ReadingMinutes: readingMinutes,
 	}, nil
 }
 
@@ -98,6 +89,5 @@ func (t Todo) Process() (any, error) {
 		Title:            t.Note.Title,
 		Priority:         t.Priority,
 		PriorityCategory: category,
-		EstimatedMinutes: t.EstimatedMinutes,
 	}, nil
 }

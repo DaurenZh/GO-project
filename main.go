@@ -58,7 +58,7 @@ func createHabit(service *Service) {
 		return
 	}
 
-	fmt.Printf("Habit created! ID=%d, State=%s\n", task.ID, task.State)
+	fmt.Printf("Habit created! ID=%d, State=%s, Payload=%+v\n", task.ID, task.State, task.Payload)
 }
 
 // createNote asks the user for note information.
@@ -77,7 +77,7 @@ func createNote(service *Service) {
 		return
 	}
 
-	fmt.Printf("Note created! ID=%d, State=%s\n", task.ID, task.State)
+	fmt.Printf("Note created! ID=%d, State=%s, Payload=%+v\n", task.ID, task.State, task.Payload)
 }
 
 // createTodo asks the user for to-do information.
@@ -88,19 +88,12 @@ func createTodo(service *Service) {
 		"Priority (low/medium/high): ",
 	)))
 
-	minutes, err := readInt("Estimated minutes: ")
-	if err != nil {
-		fmt.Println("Invalid number.")
-		return
-	}
-
 	todo := Todo{
 		Note: Note{
 			Title: title,
 			Body:  body,
 		},
 		Priority:         priority,
-		EstimatedMinutes: minutes,
 	}
 
 	task, err := service.CreateTask(TypeTodo, todo)
@@ -109,7 +102,7 @@ func createTodo(service *Service) {
 		return
 	}
 
-	fmt.Printf("To-do created! ID=%d, State=%s\n", task.ID, task.State)
+	fmt.Printf("To-do created! ID=%d, State=%s, Payload=%+v\n", task.ID, task.State, task.Payload)
 }
 
 // listTasks displays all stored tasks.
@@ -155,6 +148,7 @@ func processTask(service *Service) {
 	fmt.Println("Task processed successfully!")
 	fmt.Printf("ID: %d\n", task.ID)
 	fmt.Printf("State: %s\n", task.State)
+	fmt.Printf("Payload: %+v\n", task.Payload)
 	fmt.Printf("Result: %+v\n", task.Result)
 }
 

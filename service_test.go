@@ -74,7 +74,6 @@ func TestInvalidInput(t *testing.T) {
 			payload: Todo{
 				Note:             Note{Title: "Study Go", Body: "Practice"},
 				Priority:         "critical",
-				EstimatedMinutes: 30,
 			},
 		},
 		{
@@ -270,7 +269,6 @@ func TestMultipleTasks(t *testing.T) {
 	second, err := service.CreateTask(TypeTodo, Todo{
 		Note:             Note{Title: "Second Task", Body: "Second body"},
 		Priority:         PriorityHigh,
-		EstimatedMinutes: 45,
 	})
 	if err != nil {
 		t.Fatalf("create second task: %v", err)
