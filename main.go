@@ -129,10 +129,11 @@ func listTasks(service *Service) {
 
 	for _, task := range tasks {
 		fmt.Printf(
-			"ID=%d | Type=%s | State=%s\n",
+			"ID=%d | Type=%s | State=%s | Payload=%+v\n",
 			task.ID,
 			task.Type,
 			task.State,
+			task.Payload,
 		)
 	}
 }
