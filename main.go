@@ -11,16 +11,16 @@ import (
 var reader = bufio.NewReader(os.Stdin)
 
 // readLine reads a line of user input, including spaces.
-func readLine(prompt string) string {
-	fmt.Print(prompt)
+func readLine(text string) string {
+	fmt.Print(text)
 
 	input, _ := reader.ReadString('\n')
 	return strings.TrimSpace(input)
 }
 
 // readInt reads an integer from the terminal.
-func readInt(prompt string) (int, error) {
-	input := readLine(prompt)
+func readInt(text string) (int, error) {
+	input := readLine(text)
 	return strconv.Atoi(input)
 }
 
